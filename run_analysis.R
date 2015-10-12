@@ -58,7 +58,7 @@ DATA_STD_MEAN <- subset(ALL_DATA, select = MATCHES_NAMES)
   # From the data set in step 4, creates a second, independent tidy data set with the average 
   # of each variable for each activity and each subject.
 
-
+# melt 
 # write.csv(tidy, "UCI_HAR_tidy.csv", row.names=FALSE)
 
 
