@@ -45,12 +45,12 @@ TEST_DATA  <- cbind(SUBJECT_TRAIN_DATA, Y_TRAIN_DATA, X_TRAIN_DATA)
 ALL_DATA   <- rbind(TRAIN_DATA, TEST_DATA)
 names(ALL_DATA) <-c("SUBJECTS", "ACTIVITY", FEATURES[, ACTIVITY])
 
-# Extracts only the measurements on the mean and standard deviation for each measurement.
+# Extracts only the measurements on the mean and standard deviation for each measurement ----------
 MATCHES <- which(grepl("std|mean", names(ALL_DATA)))
 MATCHES_NAMES <- names(ALL_DATA)[c(1, 2, MATCHES)]
 DATA_STD_MEAN <- subset(ALL_DATA, select = MATCHES_NAMES)
 
-#MERGE ACTIVITY AND NAME OF ACTIVITY TOGETHER !!!
+#MERGE ACTIVITY AND NAME OF ACTIVITY TOGETHER -----------------------------------------------------
 setkey(DATA_STD_MEAN, ACTIVITY)
 names(ACTIVITY_LABELS) <- c("ACTIVITY", "ACTIVITY_NAME")
 setkey(ACTIVITY_LABELS, ACTIVITY)
@@ -58,7 +58,7 @@ DATA_STD_MEAN_DESC <- merge(DATA_STD_MEAN, ACTIVITY_LABELS, all.x = TRUE)
 DATA_STD_MEAN_DESC[ , ACTIVITY := ACTIVITY_NAME]
 DATA_STD_MEAN_DESC[ , ACTIVITY_NAME := NULL]
 
-# From the data set in step 4, creates a second, independent tidy data set with the average 
+# From the data set in step 4, creates a second, independent tidy data set with the average ------- 
 # of each variable for each activity and each subject.
 calcMean  <- paste("mean(get('",MATCHES_NAMES[3:81],"'))", sep="", collapse = ",")
 calcMean2 <- paste(".(",calcMean,")")
