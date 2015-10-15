@@ -67,6 +67,6 @@ DATA_BY_ACTIVITY_AND_SUBJECT <- DATA_STD_MEAN_DESC[,eval(parse(text = calcMean2)
 # Appropriately labels the data set with descriptive variable names -------------------------------
 names(DATA_BY_ACTIVITY_AND_SUBJECT)[3:81] = paste("mean(",MATCHES_NAMES[3:81],")")
 DATA_TIDY <- DATA_BY_ACTIVITY_AND_SUBJECT
-write.csv(DATA_TIDY, "UCI_HAR_DATA_TIDY.csv", row.names=FALSE)
+write.csv(DATA_TIDY, "UCI_HAR_DATA_TIDY.txt", row.names=FALSE)
 
 
