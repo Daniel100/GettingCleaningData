@@ -10,7 +10,7 @@
     # Uses descriptive activity names to name the activities in the data set
     # Appropriately labels the data set with descriptive variable names. 
     # From the data set in step 4, creates a second, independent tidy data set with the average 
-    # of each variable for each activity and each subject.
+    #   of each variable for each activity and each subject.
 
 # Loading Packages --------------------------------------------------------------------------------
 library(data.table)
@@ -63,6 +63,8 @@ DATA_STD_MEAN_DESC[ , ACTIVITY_NAME := NULL]
 calcMean  <- paste("mean(get('",MATCHES_NAMES[3:81],"'))", sep="", collapse = ",")
 calcMean2 <- paste(".(",calcMean,")")
 DATA_BY_ACTIVITY_AND_SUBJECT <- DATA_STD_MEAN_DESC[,eval(parse(text = calcMean2)) , by = .(ACTIVITY, SUBJECTS)]
+
+# Appropriately labels the data set with descriptive variable names -------------------------------
 names(DATA_BY_ACTIVITY_AND_SUBJECT)[3:81] = paste("mean(",MATCHES_NAMES[3:81],")")
 DATA_TIDY <- DATA_BY_ACTIVITY_AND_SUBJECT
 write.csv(DATA_TIDY, "UCI_HAR_DATA_TIDY.csv", row.names=FALSE)
